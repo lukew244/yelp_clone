@@ -1,7 +1,6 @@
 <% if @restaurants.any? %>
   <% @restaurants.each do |restaurant| %>
     <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
-      binding.pry
       <% if restaurant.image_file_name %>
         <%= image_tag restaurant.image.url(:thumb) %>
       <% end %>
