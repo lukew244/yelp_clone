@@ -6,6 +6,9 @@
       <h3> Reviews: </h3>
       <% restaurant.reviews.each do |review| %>
         <%= review.thoughts %> <br>
+        <p><%= pluralize review.endorsements.count, 'endorsement' %></p>
+          <%= link_to "Endorse Review", review_endorsements_path(review), method: :post %>
+
         <%= "This restaurant has a rating of #{review.rating} out of 5" %> <br>
       <% end %>
     <% end %>
@@ -23,6 +26,7 @@
         <%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant), :class => 'btn btn-default' %>
       <% end %>
     <% end %>
+
     </div>
     <br><br>
   <% end %>

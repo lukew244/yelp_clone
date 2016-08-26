@@ -2,9 +2,14 @@ require 'rails_helper'
 
 feature 'endorsing reviews' do
   before do
-    user = User.create(email: 'luke@test.com', password: 'test_test')
-    kfc = Restaurant.create(name: 'KFC', user_id: User.first.id)
-    kfc.reviews.create(rating: 3, thoughts: 'It was an abomination')
+    user_sign_up
+    user_create_restaurant
+
+    visit '/restaurants'
+    click_link 'Review KFC'
+    fill_in "Thoughts", with: 'so so'
+    select '3', from: 'Rating'
+    click_button 'Leave Review'
   end
 
   scenario 'a user can endorse a review, which updates the review endorsement count' do
