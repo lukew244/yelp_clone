@@ -34,4 +34,36 @@ describe Restaurant, type: :model do
 
   end
 
+  describe '#average_rating' do
+  context 'no reviews' do
+    it 'returns "N/A" when there are no reviews' do
+      restaurant = Restaurant.create(name: 'The Ivy')
+      expect(restaurant.average_rating).to eq 'N/A'
+    end
+  end
+
+  context '1 review' do
+    it 'returns that rating' do
+      user = User.create(email: 'luke@test.com', password: 'test_test')
+      restaurant = Restaurant.create(name: 'The Ivy', user_id: User.last.id)
+      restaurant.save(:validate => false)
+      restaurant.reviews.create(rating: 4, user_id: User.last.id)
+      expect(restaurant.average_rating).to eq 4
+    end
+  end
+
+  context 'multiple reviews' do
+    it 'returns the average' do
+      user = User.create(email: 'luke@test.com', password: 'test_test')
+      user = User.create(email: 'another@test.com', password: 'test_test')
+      restaurant = Restaurant.create(name: 'The Ivy', user_id: User.first.id)
+      restaurant.save(:validate => false)
+      restaurant.reviews.create(rating: 1, user_id: User.first.id)
+      restaurant.reviews.create(rating: 5, user_id: User.last.id)
+      expect(restaurant.average_rating).to eq 3
+    end
+  end
+end
+
+
 end

@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>YelpClone</title>
+    <meta charset="UTF-8">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -68,7 +69,7 @@
       <% if alert %>
         <p class="alert"><%= alert %></p>
       <% end %>
-      
+
       <%= yield %>
     </div>
   </body>
