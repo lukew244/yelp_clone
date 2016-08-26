@@ -1,0 +1,33 @@
+<% if @restaurants.any? %>
+  <% @restaurants.each do |restaurant| %>
+    <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
+      <h3> Average rating: <%= star_rating(restaurant.average_rating) %></h3>
+    <% if restaurant.reviews.any? %>
+      <h3> Reviews: </h3>
+      <% restaurant.reviews.each do |review| %>
+        <%= review.thoughts %> <br>
+        <%= "This restaurant has a rating of #{review.rating} out of 5" %> <br>
+      <% end %>
+    <% end %>
+
+    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+    <% if restaurant.user == current_user %>
+      <%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant), :class => 'btn btn-default' %>
+      <%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete, :class => 'btn btn-default' %>
+    <% end %>
+
+    <% if current_user %>
+      <% if current_user.has_reviewed?(restaurant) %>
+        <%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant), :class => 'btn btn-default', :disabled => 'disabled' %>
+      <% else %>
+        <%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant), :class => 'btn btn-default' %>
+      <% end %>
+    <% end %>
+    </div>
+    <br><br>
+  <% end %>
+<% else %>
+  <h1>No restaurants yet</h1>
+<%end%>
+
+<%= link_to "Add a restaurant", new_restaurant_path, :class => 'btn btn-primary' %>
