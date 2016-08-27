@@ -126,4 +126,26 @@ end
 
   end
 
+  context 'when another user is signed in' do
+      before do
+        user_sign_up
+        user_create_restaurant
+        user_sign_out
+        second_user_sign_up
+      end
+
+     scenario "cannot edit a restaurant created by another user" do
+       visit '/restaurants'
+       expect(page).not_to have_content 'Edit KFC'
+       expect(current_path).to eq '/restaurants'
+     end
+
+     scenario "cannot delete a restaurant created by another user" do
+       visit '/restaurants'
+       expect(page).not_to have_content 'Delete KFC'
+       expect(current_path).to eq '/restaurants'
+     end
+    end
+
+
 end
