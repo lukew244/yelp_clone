@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
 
-  before_action :find_by_params, only: [:show, :edit, :update, :destroy]
+  before_action :find_by_params, only: [:show, :edit, :update,
+                                        :destroy, :restaurant_owner]
   before_action :authenticate_user!, :except => [:index, :show]
   before_action :restaurant_owner, only: [:update, :destroy, :edit]
 
@@ -50,7 +51,6 @@ class RestaurantsController < ApplicationController
   end
 
   def restaurant_owner
-    @restaurant = Restaurant.find(params[:id])
     unless @restaurant.user_id == current_user.id
       flash[:notice] = 'Permission denied: only owner has edit/delete privileges'
       redirect_to restaurants_path
