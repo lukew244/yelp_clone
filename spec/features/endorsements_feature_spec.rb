@@ -18,4 +18,13 @@ feature 'endorsing reviews' do
     expect(page).to have_content('1 endorsement')
   end
 
+  scenario 'reviews display the correct number of endorsements', js: true do
+  visit '/restaurants'
+  5.times do
+    click_link 'Endorse Review'
+    wait_for_ajax
+  end
+  expect(page).to have_content('5 endorsements')
+end
+
 end
