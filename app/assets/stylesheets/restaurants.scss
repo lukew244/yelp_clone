@@ -1,3 +1,73 @@
 // Place all the styles related to the restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.restaurant-index {
+  background-color: #D0ECFB;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 20px 0;
+}
+
+.restaurant-name {
+  color: #EE8D66;
+  margin: 10px 0px;
+  text-decoration: underline;
+}
+
+.restaurant-name a {
+  text-decoration: underline;
+  color: #EE8D66;
+}
+
+.restaurant-panel {
+  vertical-align: top;
+  display: inline-block;
+  height:200px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.restaurant-thumb {
+  float: left;
+  display: inline-block;
+
+}
+
+.restaurant-thumb img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.restaurant-description {
+  width: 30%;
+  height: 100%;
+  margin: 0 20px;
+  float: left;
+  display: inline-block;
+  padding: 10px;
+  overflow: scroll;
+  border: 1px solid black;
+}
+
+.restaurant-reviews {
+  width: 35%;
+  height: 100%;
+  float: left;
+  display: inline-block;
+  padding: 10px;
+  overflow: hidden;
+  border: 1px solid black;
+}
+
+
+.review-button {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
