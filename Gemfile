@@ -30,6 +30,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'pry-rails'
 gem 'paperclip'
 
+# for elastic search
+gem 'searchkick', '~> 1.1'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

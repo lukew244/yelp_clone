@@ -6,7 +6,8 @@ class RestaurantsController < ApplicationController
   before_action :restaurant_owner, only: [:update, :destroy, :edit]
 
   def index
-    @restaurants = Restaurant.all
+    query = params[:q].presence || "*"
+    @restaurants = Restaurant.search(query)
   end
 
   def new
