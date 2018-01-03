@@ -4,7 +4,10 @@ cache:
 sudo: false
 rvm:
   - 2.2.4
+services:
+  - elasticsearch
 before_script:
+  - sleep 10
   - RAILS_ENV=test bundle exec rails db:create db:schema:load
 script:
   - bundle exec rspec
